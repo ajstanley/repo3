@@ -1,0 +1,21 @@
+--- fedora_item.inc.ORIGINAL	2012-12-05 14:22:38.315957540 +0100
++++ fedora_item.inc	2012-12-05 14:30:15.524928044 +0100
+@@ -910,9 +910,16 @@
+       'pidNamespace' => $pid_namespace,
+     );
+ 
+-    $result = self::soap_call('getNextPID', $params);
++    if ($pid_namespace != 'uuid') {
++      $result = self::soap_call('getNextPID', $params);
++      $pid = $result->pid;
++    }
++    else {
++      require_once ('uuid_create.class');
++      $pid = 'uuid:' . UUID::v4();
++    }
++    return $pid;
+ 
+-    return $result->pid;
+   }
+ 
+   /**

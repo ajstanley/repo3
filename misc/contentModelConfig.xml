@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Example of content model configuration as explained in the document sent earlier.
+The attributes RELS-EXT and html-div refer to a dynamic dissemination through the Fedora Content Model Architecture; batchModify contains a space-separated list of them.
+A missing attribute on a model element means no action.
+We would like to see (if feasible) a consistent naming convention for content models, e.g. model:Image (capitalized as they are a sort of classes) instead of the names in existing solution packs.
+-->
+<contentModelConfig>
+	<!-- sdef:view/div does not yet work but we have a sdef:view/thml dissemination that does. It is not for the end user but for ourselves and it provides a html view of the rdf data -->
+	<global RELS-EXT="sdef:makeDS/RELS-EXT" html-div="sdef:view/div"/>
+	<model pid="model:Publication" cleanup="[some path]cleanup_MODS.xslt" do-RELS-EXT="yes" batchModify="sdef:makeBM/AAT sdef:makeBM/geonames"/>
+	<model pid="model:Image" cleanup="[some path]cleanup_MODS.xslt" do-RELS-EXT="yes" batchModify="sdef:makeBM/AAT sdef:makeBM/geonames"/>
+	<model pid="model:Building" cleanup="[some path]cleanup_MODS.xslt" do-RELS-EXT="yes" batchModify="sdef:makeBM/AAT sdef:makeBM/geonames"/>
+	<model pid="model:Person" cleanup="[some path]cleanup_FOAF.xslt" do-RELS-EXT="yes"/>
+</contentModelConfig>
